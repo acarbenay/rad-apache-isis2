@@ -57,6 +57,10 @@ msgstr ""
 msgid "New name"
 msgstr ""
 
+#: brussels.bric.sample.rad.isis.team2.dom.modules.housing.Housing#updateFloor(java.lang.Integer)
+msgid "New Floor value"
+msgstr ""
+
 
 #: org.apache.isis.applib.services.bookmark.BookmarkHolderAssociationContributions#object()
 msgid "Object"
@@ -70,6 +74,10 @@ msgstr ""
 
 #: brussels.bric.sample.rad.isis.team2.dom.modules.housing.Housing#updateDescription()
 msgid "Update Description"
+msgstr ""
+
+#: brussels.bric.sample.rad.isis.team2.dom.modules.housing.Housing#updateFloor()
+msgid "Update Floor value"
 msgstr ""
 
 
