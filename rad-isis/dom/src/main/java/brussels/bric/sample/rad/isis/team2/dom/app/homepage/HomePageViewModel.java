@@ -22,29 +22,29 @@ import java.util.List;
 
 import org.apache.isis.applib.annotation.ViewModel;
 
-import brussels.bric.sample.rad.isis.team2.dom.modules.housing.Housing;
-import brussels.bric.sample.rad.isis.team2.dom.modules.housing.Housings;
+import brussels.bric.sample.rad.isis.team2.dom.modules.person.Person;
+import brussels.bric.sample.rad.isis.team2.dom.modules.person.Persons;
 
 @ViewModel
 public class HomePageViewModel {
 
     //region > title
     public String title() {
-        return getObjects().size() + " objects";
+        return getPersons().size() + " persons";
     }
     //endregion
 
     //region > object (collection)
     @org.apache.isis.applib.annotation.HomePage
-    public List<Housing> getObjects() {
-        return housings.listAll();
+    public List<Person> getPersons() {
+        return persons.listAll();
     }
     //endregion
 
     //region > injected services
 
     @javax.inject.Inject
-    Housings housings;
+    Persons persons;
 
     //endregion
 }
