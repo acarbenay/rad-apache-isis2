@@ -51,7 +51,7 @@ import java.util.List;
 })
 @javax.jdo.annotations.Unique(name="Housing_description_UNQ", members = {"description"})
 @DomainObject(
-        objectType = "SIMPLE"
+        objectType = "HOUSING"
 )
 @DomainObjectLayout(
         bookmarking = BookmarkPolicy.AS_ROOT
