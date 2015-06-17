@@ -16,7 +16,7 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package brussels.bric.sample.rad.isis.team2.dom.modules.simple;
+package brussels.bric.sample.rad.isis.team2.dom.modules.housing;
 
 import java.util.List;
 import org.apache.isis.applib.DomainObjectContainer;
@@ -30,9 +30,9 @@ import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
 
-@DomainService(repositoryFor = SimpleObject.class)
+@DomainService(repositoryFor = Housing.class)
 @DomainServiceLayout(menuOrder = "10")
-public class SimpleObjects {
+public class Housings {
 
     //region > listAll (action)
     @Action(
@@ -42,12 +42,12 @@ public class SimpleObjects {
             bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "1")
-    public List<SimpleObject> listAll() {
-        return container.allInstances(SimpleObject.class);
+    public List<Housing> listAll() {
+        return container.allInstances(Housing.class);
     }
     //endregion
 
-    //region > findByName (action)
+    //region > findByDescription (action)
     @Action(
             semantics = SemanticsOf.SAFE
     )
@@ -55,24 +55,24 @@ public class SimpleObjects {
             bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "2")
-    public List<SimpleObject> findByName(
-            @ParameterLayout(named="Name")
-            final String name
+    public List<Housing> findByDescription(
+            @ParameterLayout(named="Description")
+            final String description
     ) {
         return container.allMatches(
                 new QueryDefault<>(
-                        SimpleObject.class,
-                        "findByName",
-                        "name", name));
+                        Housing.class,
+                        "findByDescription",
+                        "description", description));
     }
     //endregion
 
     //region > create (action)
     @MemberOrder(sequence = "3")
-    public SimpleObject create(
+    public Housing create(
             final @ParameterLayout(named="Name") String name) {
-        final SimpleObject obj = container.newTransientInstance(SimpleObject.class);
-        obj.setName(name);
+        final Housing obj = container.newTransientInstance(Housing.class);
+        obj.setDescription(name);
         container.persistIfNotAlready(obj);
         return obj;
     }
