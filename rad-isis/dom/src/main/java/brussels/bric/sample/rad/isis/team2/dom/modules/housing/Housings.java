@@ -64,7 +64,7 @@ public class Housings {
     @MemberOrder(sequence = "3")
     public Housing create(
             @Parameter(maxLength = 100)
-            @ParameterLayout(named = "Description")
+            @ParameterLayout(named = "Description", multiLine=3)
             final String description,
             @Parameter(regexPattern = "^[0-9]+$")
             @ParameterLayout(named = "Floor")
@@ -78,7 +78,7 @@ public class Housings {
             @Parameter
             @ParameterLayout(named = "Price")
             final Double price,
-            @Parameter
+            @Parameter(optionality=Optionality.OPTIONAL)
             @ParameterLayout(named = "Elevator")
             final Boolean elevator) {
         final Housing obj = container.newTransientInstance(Housing.class);

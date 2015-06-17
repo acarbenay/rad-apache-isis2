@@ -21,15 +21,11 @@
             "memberGroups": {
                 "General": {
                     "members": {
-                        "description": {
-                            "actions": {
-                                "updateDescription": {
-                                    "actionLayout": {
-                                        "position": "BOTTOM"
-                                    }
-                                }
-                            }
-                        }
+                        "description",
+                        "floor",
+                        "box",
+                        "surface",
+                        "elevator"
                     }
                 }
             }

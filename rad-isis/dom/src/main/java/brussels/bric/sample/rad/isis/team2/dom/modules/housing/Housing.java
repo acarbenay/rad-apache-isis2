@@ -71,7 +71,7 @@ public class Housing implements Comparable<Housing> {
     private int floor;
     private String box;
     private int surface;
-    private boolean elevator;
+    private Boolean elevator;
     private double price;
 
 //    @Persistent(mappedBy = "housing")
@@ -79,7 +79,7 @@ public class Housing implements Comparable<Housing> {
 
 
     @javax.jdo.annotations.Column(allowsNull="false", length = 100)
-    @Title(sequence="1")
+    @MemberOrder(sequence="0")
     @Property(
             editing = Editing.DISABLED
     )
@@ -92,7 +92,7 @@ public class Housing implements Comparable<Housing> {
     }
 
     @javax.jdo.annotations.Column(allowsNull="false")
-    @Title(sequence="2")
+    @MemberOrder(sequence="1")
     @Property(
             editing = Editing.DISABLED
     )
@@ -106,7 +106,7 @@ public class Housing implements Comparable<Housing> {
 
 
     @javax.jdo.annotations.Column(allowsNull="false", length=30)
-    @Title(sequence="3")
+    @MemberOrder(sequence="2")
     @Property(
             editing = Editing.DISABLED
     )
@@ -119,7 +119,7 @@ public class Housing implements Comparable<Housing> {
     }
 
     @javax.jdo.annotations.Column(allowsNull="false")
-    @Title(sequence="4")
+    @MemberOrder(sequence="3")
     @Property(
             editing = Editing.DISABLED
     )
@@ -132,7 +132,7 @@ public class Housing implements Comparable<Housing> {
     }
 
     @javax.jdo.annotations.Column(allowsNull="false")
-    @Title(sequence="5")
+    @MemberOrder(sequence="4")
     @Property(
             editing = Editing.DISABLED
     )
@@ -144,16 +144,16 @@ public class Housing implements Comparable<Housing> {
         this.price = price;
     }
 
-    @javax.jdo.annotations.Column(allowsNull="false")
-    @Title(sequence="6")
+    @javax.jdo.annotations.Column(allowsNull="true")
+    @MemberOrder(sequence="5")
     @Property(
             editing = Editing.DISABLED
     )
-    public boolean isElevator() {
+    public Boolean getElevator() {
         return elevator;
     }
 
-    public void setElevator(boolean elevator) {
+    public void setElevator(Boolean elevator) {
         this.elevator = elevator;
     }
 
@@ -171,7 +171,7 @@ public class Housing implements Comparable<Housing> {
     )
     public Housing updateHousing(
             @Parameter(maxLength = 100)
-            @ParameterLayout(named = "New description")
+            @ParameterLayout(named = "New description", multiLine=3)
             final String description,
             @Parameter(regexPattern = "^[0-9]+$")
             @ParameterLayout(named = "New Floor value")
@@ -185,7 +185,7 @@ public class Housing implements Comparable<Housing> {
             @Parameter(regexPattern = "^[0-9]+$")
             @ParameterLayout(named = "New Price value")
             final Double price,
-            @Parameter
+            @Parameter(optionality=Optionality.OPTIONAL)
             @ParameterLayout(named = "New Elevator value")
             final Boolean elevator
     ) {
@@ -219,7 +219,7 @@ public class Housing implements Comparable<Housing> {
     }
 
     public Boolean  default5UpdateHousing() {
-        return isElevator();
+        return getElevator();
     }
 
 
