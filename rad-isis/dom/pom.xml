@@ -113,6 +113,15 @@
             <artifactId>objenesis</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.28</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 
     <profiles>
