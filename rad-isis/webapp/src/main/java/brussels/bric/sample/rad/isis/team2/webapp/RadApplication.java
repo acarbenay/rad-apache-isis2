@@ -78,7 +78,7 @@ public class RadApplication extends IsisWicketApplication {
 
     @Override
     protected void init() {
-        super.init();
+         super.init();
 
         IBootstrapSettings settings = Bootstrap.getSettings();
         settings.setThemeProvider(new BootswatchThemeProvider(BootswatchTheme.Flatly));
