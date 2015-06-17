@@ -36,7 +36,7 @@ public class Housings {
 
     //region > listAll (action)
     @Action(
-            semantics = SemanticsOf.SAFE
+             semantics = SemanticsOf.SAFE
     )
     @ActionLayout(
             bookmarking = BookmarkPolicy.AS_ROOT
