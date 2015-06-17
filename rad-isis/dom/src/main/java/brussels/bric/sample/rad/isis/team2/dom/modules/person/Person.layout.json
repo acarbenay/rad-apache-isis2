@@ -21,15 +21,12 @@
             "memberGroups": {
                 "General": {
                     "members": {
-                        "name": {
-                            "actions": {
-                                "updateName": {
-                                    "actionLayout": {
-                                        "position": "BOTTOM"
-                                    }
-                                }
-                            }
-                        }
+                        "name",
+                        "firstname",
+                        "title",
+                        "email",
+                        "phone",
+                        "bankAccount"
                     }
                 }
             }

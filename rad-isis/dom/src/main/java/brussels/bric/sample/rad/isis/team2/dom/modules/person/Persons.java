@@ -19,6 +19,7 @@
 package brussels.bric.sample.rad.isis.team2.dom.modules.person;
 
 import java.util.List;
+
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
@@ -26,6 +27,8 @@ import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.Optionality;
+import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
@@ -70,11 +73,19 @@ public class Persons {
     //region > create (action)
     @MemberOrder(sequence = "3")
     public Person create(
-            final @ParameterLayout(named="name") String name,
-            final @ParameterLayout(named="firstname") String firstname) {
+            final @ParameterLayout(named="Name") String name,
+            final @ParameterLayout(named="First Name") String firstname,
+            final @ParameterLayout(named="Title") @Parameter(optionality=Optionality.OPTIONAL) String title,
+            final @ParameterLayout(named="Email") String email,
+            final @ParameterLayout(named="Phone") String phone,
+            final @ParameterLayout(named="Bank account") String bankAccount) {
         final Person obj = container.newTransientInstance(Person.class);
         obj.setName(name);
         obj.setFirstname(firstname);
+        obj.setTitle(title);
+        obj.setEmail(email);
+        obj.setPhone(phone);
+        obj.setBankAccount(bankAccount);
         container.persistIfNotAlready(obj);
         return obj;
     }
