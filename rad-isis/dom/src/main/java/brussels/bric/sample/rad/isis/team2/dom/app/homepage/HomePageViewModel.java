@@ -22,8 +22,8 @@ import java.util.List;
 
 import org.apache.isis.applib.annotation.ViewModel;
 
-import brussels.bric.sample.rad.isis.team2.dom.modules.simple.SimpleObject;
-import brussels.bric.sample.rad.isis.team2.dom.modules.simple.SimpleObjects;
+import brussels.bric.sample.rad.isis.team2.dom.modules.housing.Housing;
+import brussels.bric.sample.rad.isis.team2.dom.modules.housing.Housings;
 
 @ViewModel
 public class HomePageViewModel {
@@ -36,15 +36,15 @@ public class HomePageViewModel {
 
     //region > object (collection)
     @org.apache.isis.applib.annotation.HomePage
-    public List<SimpleObject> getObjects() {
-        return simpleObjects.listAll();
+    public List<Housing> getObjects() {
+        return housings.listAll();
     }
     //endregion
 
     //region > injected services
 
     @javax.inject.Inject
-    SimpleObjects simpleObjects;
+    Housings housings;
 
     //endregion
 }
