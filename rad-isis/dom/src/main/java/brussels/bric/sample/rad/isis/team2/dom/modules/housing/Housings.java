@@ -20,14 +20,7 @@ package brussels.bric.sample.rad.isis.team2.dom.modules.housing;
 
 import java.util.List;
 import org.apache.isis.applib.DomainObjectContainer;
-import org.apache.isis.applib.annotation.Action;
-import org.apache.isis.applib.annotation.ActionLayout;
-import org.apache.isis.applib.annotation.BookmarkPolicy;
-import org.apache.isis.applib.annotation.DomainService;
-import org.apache.isis.applib.annotation.DomainServiceLayout;
-import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.ParameterLayout;
-import org.apache.isis.applib.annotation.SemanticsOf;
+import org.apache.isis.applib.annotation.*;
 import org.apache.isis.applib.query.QueryDefault;
 
 @DomainService(repositoryFor = Housing.class)
@@ -70,9 +63,31 @@ public class Housings {
     //region > create (action)
     @MemberOrder(sequence = "3")
     public Housing create(
-            final @ParameterLayout(named="Description") String name) {
+            @Parameter(maxLength = 100)
+            @ParameterLayout(named = "Description")
+            final String description,
+            @Parameter(regexPattern = "^[0-9]+$")
+            @ParameterLayout(named = "Floor")
+            final Integer floor,
+            @Parameter(maxLength = 10)
+            @ParameterLayout(named = "Box")
+            final String box,
+            @Parameter(regexPattern = "^[0-9]+$")
+            @ParameterLayout(named = "Surface")
+            final Integer surface,
+            @Parameter
+            @ParameterLayout(named = "Price")
+            final Double price,
+            @Parameter
+            @ParameterLayout(named = "Elevator")
+            final Boolean elevator) {
         final Housing obj = container.newTransientInstance(Housing.class);
-        obj.setDescription(name);
+        obj.setDescription(description);
+        obj.setPrice(price);
+        obj.setElevator(elevator);
+        obj.setSurface(surface);
+        obj.setFloor(floor);
+        obj.setBox(box);
         container.persistIfNotAlready(obj);
         return obj;
     }

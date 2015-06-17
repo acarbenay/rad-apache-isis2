@@ -19,21 +19,17 @@
 package brussels.bric.sample.rad.isis.team2.dom.modules.housing;
 
 import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.Join;
+import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.VersionStrategy;
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.Identifier;
-import org.apache.isis.applib.annotation.Action;
-import org.apache.isis.applib.annotation.BookmarkPolicy;
-import org.apache.isis.applib.annotation.DomainObject;
-import org.apache.isis.applib.annotation.DomainObjectLayout;
-import org.apache.isis.applib.annotation.Editing;
-import org.apache.isis.applib.annotation.Parameter;
-import org.apache.isis.applib.annotation.ParameterLayout;
-import org.apache.isis.applib.annotation.Property;
-import org.apache.isis.applib.annotation.Title;
+import org.apache.isis.applib.annotation.*;
 import org.apache.isis.applib.services.eventbus.ActionDomainEvent;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 import org.apache.isis.applib.util.ObjectContracts;
+
+import java.util.List;
 
 @javax.jdo.annotations.PersistenceCapable(identityType=IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(
@@ -75,9 +71,12 @@ public class Housing implements Comparable<Housing> {
     private int floor;
     private String box;
     private int surface;
-    private int rooms;
     private boolean elevator;
     private double price;
+
+//    @Persistent(mappedBy = "housing")
+//    private List<Room> rooms;
+
 
     @javax.jdo.annotations.Column(allowsNull="false", length = 100)
     @Title(sequence="1")
@@ -91,7 +90,6 @@ public class Housing implements Comparable<Housing> {
     public void setDescription(String description) {
         this.description = description;
     }
-
 
     @javax.jdo.annotations.Column(allowsNull="false")
     @Title(sequence="2")
@@ -138,19 +136,6 @@ public class Housing implements Comparable<Housing> {
     @Property(
             editing = Editing.DISABLED
     )
-    public int getRooms() {
-        return rooms;
-    }
-
-    public void setRooms(int rooms) {
-        this.rooms = rooms;
-    }
-
-    @javax.jdo.annotations.Column(allowsNull="false")
-    @Title(sequence="6")
-    @Property(
-            editing = Editing.DISABLED
-    )
     public double getPrice() {
         return price;
     }
@@ -160,7 +145,7 @@ public class Housing implements Comparable<Housing> {
     }
 
     @javax.jdo.annotations.Column(allowsNull="false")
-    @Title(sequence="7")
+    @Title(sequence="6")
     @Property(
             editing = Editing.DISABLED
     )
@@ -171,7 +156,6 @@ public class Housing implements Comparable<Housing> {
     public void setElevator(boolean elevator) {
         this.elevator = elevator;
     }
-
 
 
     //region > updateName (action)
@@ -199,9 +183,6 @@ public class Housing implements Comparable<Housing> {
             @ParameterLayout(named = "New Surface value")
             final Integer surface,
             @Parameter(regexPattern = "^[0-9]+$")
-            @ParameterLayout(named = "New Rooms value")
-            final Integer rooms,
-            @Parameter(regexPattern = "^[0-9]+$")
             @ParameterLayout(named = "New Price value")
             final Double price,
             @Parameter
@@ -212,7 +193,6 @@ public class Housing implements Comparable<Housing> {
         setFloor(floor);
         setBox(box);
         setSurface(surface);
-        setRooms(rooms);
         setElevator(elevator);
         setPrice(price);
         return this;
@@ -234,15 +214,11 @@ public class Housing implements Comparable<Housing> {
         return getSurface();
     }
 
-    public Integer default4UpdateHousing() {
-        return getRooms();
-    }
-
-    public Double default5UpdateHousing() {
+    public Double default4UpdateHousing() {
         return getPrice();
     }
 
-    public boolean  default6UpdateHousing() {
+    public Boolean  default5UpdateHousing() {
         return isElevator();
     }
 
